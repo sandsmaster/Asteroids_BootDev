@@ -33,6 +33,11 @@ def main():
                 return
         pygame.Surface.fill(screen,"black")
         updatable.update(dt)
+        for obj in updatable:
+            if hasattr(obj, "colliding"):
+                if obj != pl1 and obj.colliding(pl1):
+                    print("Game over!")
+                    return True     # Exit game (player died)
         for obj in drawable:
             obj.draw(screen)
         pygame.display.flip()
